@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--=================================================================================================================-->
+<head>
+
+    <!----------------------------------------------------------------------------------------------------------------->
+    <title> Ejemplo </title>
+
+    <!----------------------------------------------------------------------------------------------------------------->
+    <!--                                                          //Import basicos de estilo                         -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../Bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../styles.css" />
+    <link href="../Bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!----------------------------------------------------------------------------------------------------------------->
+</head>
+
+<!--=================================================================================================================-->
+<body>
+
+    <!----------------------------------------------------------------------------------------------------------------->
+    <!--                                                            //Top navigation bar                             -->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-collapse collapse">
+
+                <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+                <!--                                                //Title in the bar                               -->
+                <a class="navbar-brand"><b>Company</b></a>
+
+                <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+                <!--                                                //Extra links in the bar                         -->
+                <ul class="nav navbar-nav">
+                    <li><a href="#about">Acerca de nosostros</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#about">Salir</a></li>
+                </ul>
+                <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            </div>
+        </div>
+    </nav>
+
+    <!----------------------------------------------------------------------------------------------------------------->
+    <!--                                                            //Navigation bar                                 -->
+    <nav class="navbar navbar-default" id="navbaruser">
+        <ul class="nav navbar-nav navbar-center">
+            <div class="barcenter">
+
+                <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+                <!--                                                //Buton to view employees                        -->
+                <li id="btnShowEmployees"><a class="navbar-brand" style="text-align: center; cursor: pointer;"><span
+                        class="glyphicon glyphicon-user" aria-hidden="true"></span><br>Empleados</a><br>
+                    <div id="divLineEmployee" class="verticalLine"></div>
+                </li>
+
+                <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+                <!--                                                //Buton to view Departments                      -->
+                <li id="btnShowDepartments"><a class="navbar-brand" style="text-align: center; cursor: pointer;"><span
+                        class="glyphicon glyphicon-home" aria-hidden="true"></span><br>Departamentos</a><br>
+                    <div id="divLineDepartment" class="verticalLine" hidden="hidden"></div>
+                </li>
+
+                <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+                <!--                                                //Buton to view Projects                         -->
+                <li id="btnShowProjects"><a class="navbar-brand" style="text-align: center; cursor: pointer;"><span
+                        class="glyphicon glyphicon-folder-open" aria-hidden="true"></span><br>Proyectos</a><br>
+                    <div id="divLineProjects" class="verticalLine" hidden="hidden"></div>
+                </li>
+
+                <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+                <!--                                                //Buton to view reports                          -->
+                <li id="btnShowReports"><a class="navbar-brand" style="text-align: center; cursor: pointer;"><span
+                        class="glyphicon glyphicon-list-alt" aria-hidden="true"></span><br>Reportes</a><br>
+                    <div id="divLineReports" class="verticalLine" hidden="hidden"></div>
+                </li>
+
+                <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            </div>
+    </nav>
+
+    <!----------------------------------------------------------------------------------------------------------------->
+    <!--                                                            //Label to control the user view it have the ssn -->
+    <input type="hidden" name="smname" id="lblSSN" />
+
+    <!----------------------------------------------------------------------------------------------------------------->
+    <!--                                                            /Div who load the required view, required by the
+                                                                    //      center navigation bar                    -->
+    <div id="divView" style="padding-top:20px">
+
+    </div>
+
+    <!----------------------------------------------------------------------------------------------------------------->
+</body>
+
+<script src="V1-MainMenuActions.js"></script>
+
+<!--=================================================================================================================-->
+</html>

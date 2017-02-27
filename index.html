@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--=================================================================================================================-->
+<head>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <title> Ejemplo </title>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!--                                                          //Import basicos de estilo                         -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="Bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+</head>
+
+<!--=================================================================================================================-->
+<body>
+
+    <!----------------------------------------------------------------------------------------------------------------->
+    <!--                                                            //Navigation bar                                 -->
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-collapse collapse">
+
+                <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+                <!--                                                //Title in the bar                               -->
+                <a class="navbar-brand"><b>Company</b></a>
+
+                <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+                <!--                                                //Extra links in the bar                         -->
+                <ul class="nav navbar-nav">
+                    <li><a href="#about">Acerca de nosostros</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            </div>
+        </div>
+    </nav>
+
+    <!----------------------------------------------------------------------------------------------------------------->
+    <!--                                                        //Login form                                         -->
+    <div class="divCenter">
+
+        <h2 class="divTitle">Login</h2>
+
+        <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+        <form action="Login" class="form-horizontal">
+
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!--                                                //Input para el usuario                              -->
+            <div class="form-group">
+                <label class="control-label col-sm-2">ID Number: </label>
+                <div class="col-sm-10">
+                    <input id="inUser" type="string" value="" class="form-control"
+                        placeholder="Enter Administrators' ID">
+                </div>
+            </div>
+
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!--                                                //Input de contraseña                                -->
+            <div class="form-group">
+                <label class="control-label col-sm-2">Password:</label>
+                <div class="col-sm-10">
+                    <input id="inPassword" type="password" value="" class="form-control" placeholder="Enter password">
+                </div>
+            </div>
+
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <!--                                                //Boton de login                                     -->
+            <div class="form-group text-center">
+                <div class="span7 offset17">
+                    <span class="btn btn-success " id="btnIngresar">Ingresar</span>
+                </div>
+            </div>
+
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+            <div id = "divAlert" class="alert alert-danger" role="alert" hidden="hidden">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            </div>
+        </form>
+
+            <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    </div>
+
+    <!----------------------------------------------------------------------------------------------------------------->
+</body>
+
+    <!----------------------------------------------------------------------------------------------------------------->
+    <script src="indexActions.js"></script>
+    <script src="Controller/1-CheckSessionController.js"></script>
+
+<!--=================================================================================================================-->
+</html>

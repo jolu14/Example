@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../styles.css" />
+
+</head>
+
+<body>
+
+    <div class="modal-dialog">
+<div class="modal-content">
+    <!-- Modal Header -->
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+           <span aria-hidden="true">&times;</span>
+           <span class="sr-only">Close</span>
+    </button>
+        <h4 class="modal-title" id="myModalLabel">
+        Agregar empleado
+    </h4>
+</div>
+
+    <!-- Modal Body -->
+    <div class="modal-body">
+
+        <div id="divSucces" class="alert alert-success alert-dismissable" hidden="true" >
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        </div>
+
+        <div id="divAlert" class="alert alert-danger alert-dismissable"hidden="true" >
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        </div>
+
+        <form id="formAddEmployee" class="form-horizontal" role="form">
+
+            <div class="form-group">
+                <label  class="control-label col-sm-4 required" style="padding-top:8px">SSN:</label>
+                <i class="fa fa-asterisk text-danger"></i>
+                <div class="col-sm-7">
+                    <input  id="inSSN" type="string" value="" class="form-control" placeholder="Numero de seguro social" style="margin-bottom:10px"> </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4 required" style="padding-top:8px">Nombre(s):</label>
+                <div class="col-sm-7">
+
+                    <input  id="inFName" type="string" value="" class="form-control" placeholder="Nombre(s)" style="margin-bottom:10px"> </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4 required" style="padding-top:8px">Apellido:</label>
+                <div class="col-sm-7">
+                    <input id="inLName" type="string" value="" class="form-control" placeholder="Apellido paterno" style="margin-bottom:10px"> </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4 required" style="padding-top:8px">Fecha de nacimiento:</label>
+                <div class="col-sm-7">
+                    <input id="inBDate" type="date" value="" class="form-control" placeholder="" style="margin-bottom:10px"> </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4 required" style="padding-top:8px">Direccion:</label>
+                <div class="col-sm-7">
+                    <input id="inAddress" type="string" value="" class="form-control" placeholder="Numero, calle, ciudad, estado" style="margin-bottom:10px"> </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4 required">Genero:</label>
+                <div class="col-sm-8">
+                    <input type="radio" name="sx" id="sex-m" value="m">
+                    <label for="sex-m">M</label>
+                    <input type="radio" name="sx" id="sex-f" value="f">
+                    <label for="sex-f">F</label>
+                    <p></p>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label class="control-label col-sm-4 required" style="padding-top:8px">Salario:</label>
+                <div class="col-sm-7">
+                    <input id="inSalary" type="number" step="0.01" value="" class="form-control" placeholder="0.00" style="margin-bottom:10px"> </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4" style="padding-top:8px">Supervisor:</label>
+                <select id="inSuperSSN" name="superssn" class="form-control col-sm-8" style="width:280px; margin-left:15px; margin-bottom:10px;">
+                  <option value="Null">Sin supervisor</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4" style="padding-top:8px">Departamento:</label>
+                <select id="inDNo" name="dno" class="form-control col-sm-8" style="width:280px; margin-left:15px; margin-bottom:10px;">
+                    <option value="Null">Departamento no asignado</option>
+                </select>
+            </div>
+        </form>
+
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+                Close
+    </button>
+        <button id="btnAdd" type="button" class="btn btn-primary">
+        Agregar
+    </button>
+    </div>
+</div>
+</div>
+
+</body>
+<script src="Employees/E3-EmployeeDialogActions.js"></script>
+<html>

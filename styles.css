@@ -1,0 +1,75 @@
+.divTitle{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+
+}
+
+.divCenter
+{
+  background-color: WhiteSmoke;
+  padding-bottom:50px;
+  padding-top:50px;
+  padding-right:100px;
+  padding-left:100px;
+  margin: 100px;
+  margin-left: 300px;
+  margin-right: 300px;
+
+}
+
+.btnCenter
+{
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+
+#btnIngresar
+{
+  padding-right: 100px;
+  padding-left: 100px;
+}
+
+#navbaruser
+{
+
+    margin:0 auto;
+    list-style:none;
+    padding: 0 auto;
+   width:650px;
+   padding-left: 85px;
+   padding-bottom: 20px;
+}
+
+#navbaruser li {
+float:left;
+vertical-align: baseline;
+}
+
+.verticalLine {
+  margin-top: 40px;
+  border-bottom: 1px solid gray;
+}
+
+.button{
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 10px  !important;
+}
+
+label.required:after {content: "*"; color: red;}
+
+.span3 {
+    height: 100px !important;
+    overflow: scroll;
+}​
+
+.column
+{
+    float: left;
+    width: 50%;
+}
