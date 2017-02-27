@@ -116,8 +116,13 @@ $(document).ready(function()
             var dataArray = jQuery.parseJSON(jsonResponse);
             for (var x = 0; x < dataArray.length; x++) {
                 $("#tbDependent").append(
-
-                    "<tr id=\"" + dataArray[x][0] + "\"style=\"cursor: pointer\"><td>" + dataArray[x][0] +
+                    "<tr id=\"" + dataArray[x][0] + "\"style=\"cursor: pointer\"><td hidden=\"true\" class=\"edit\"><p data-placement=\"top\" data-toggle=\"tooltip\" title=\"Delete\"><button class=\" btn " +
+                    "btn-danger btn-xs\" data-title=\"Delete\" data-toggle=\"modal\" data-target=\"#delete\" ><span "+
+                    "class=\"glyphicon glyphicon-trash\"></span></button></p></td>" +
+                    "</td><td hidden=\"true\" class=\"edit\"><p data-placement=\"top\" data-toggle=\"tooltip\" title=\"Delete\"><button class=\" btn " +
+                    "btn-primary btn-xs\" data-title=\"Delete\" data-toggle=\"modal\" data-target=\"#delete\" ><span "+
+                    "class=\"glyphicon glyphicon-edit\"></span></button></p></td>" +
+                    "</td><td>" + dataArray[x][0] +
                     "</td><td>" + dataArray[x][1] +
                     "</td><td>" + dataArray[x][2] +
                     "</td><td>" + dataArray[x][3] +
@@ -145,8 +150,10 @@ $(document).ready(function()
             var dataArray = jQuery.parseJSON(jsonResponse);
             for (var x = 0; x < dataArray.length; x++) {
                 $("#tbProjects").append(
-
-                    "<tr id=\"" + dataArray[x][0] + "\"style=\"cursor: pointer\"><td>" + dataArray[x][0] +
+                    "<tr id=\"" + dataArray[x][0] + "\"style=\"cursor: pointer\"><td hidden=\"true\" class=\"edit\"><p data-placement=\"top\" data-toggle=\"tooltip\" title=\"Delete\"><button class=\" btn " +
+                    "btn-danger btn-xs\" data-title=\"Delete\" data-toggle=\"modal\" data-target=\"#delete\" ><span "+
+                    "class=\"glyphicon glyphicon-trash\"></span></button></p></td>" +
+                    "</td><td>" + dataArray[x][0] +
                     "</td><td>" + dataArray[x][1] +
                     "</td><td>" + dataArray[x][2] +
                     "</td></tr>");
@@ -167,16 +174,80 @@ $(document).ready(function()
     //------------------------------------------------------------------------------------------------------------------
     $("#btnEditEmployee").unbind().click(function()
     {
+        $(".edit").show();
         console.log("btnEditEmployee");
         if ($("#divBtnSave").is(":hidden"))
         {
-            $("#divBtnSave").toggle("slow");
+            $("#divBtnSave").toggle();
+        }
+
+        if ($("#divBtnEdit").is(":hidden"))
+        {
+            $("#divBtnEdit").toggle();
         }
 
         if (!$("#btnEditEmployee").is(":hidden"))
         {
-            $("#btnEditEmployee").toggle("slow");
+            $("#btnEditEmployee").toggle();
         }
+        if (!$("#btnDeleteEmployee").is(":hidden"))
+        {
+            $("#btnDeleteEmployee").toggle();
+        }
+
+
+        document.getElementById('inSSN').readOnly = false;
+        document.getElementById('inFName').readOnly = false;
+        document.getElementById('inLName').readOnly = false;
+        document.getElementById('inBDate').readOnly = false;
+        document.getElementById('inAddress').readOnly = false;
+        document.getElementById('inSalary').readOnly = false;
+
+        document.getElementById('sex-m').disabled = false;
+        document.getElementById('sex-f').disabled = false;
+        document.getElementById('inDNo').disabled = false;
+        document.getElementById('inSuperSSN').disabled = false;
+
+    });
+
+    //------------------------------------------------------------------------------------------------------------------
+    $("#btnSaveEmployee").unbind().click(function()
+    {
+        $(".edit").hide();
+        console.log("btnSaveEmployee");
+
+        if (!$("#divBtnSave").is(":hidden"))
+        {
+            $("#divBtnSave").toggle();
+        }
+
+        if (!$("#divBtnEdit").is(":hidden"))
+        {
+            $("#divBtnEdit").toggle();
+        }
+
+        if ($("#btnEditEmployee").is(":hidden"))
+        {
+            $("#btnEditEmployee").toggle();
+        }
+
+        if ($("#btnDeleteEmployee").is(":hidden"))
+        {
+            $("#btnDeleteEmployee").toggle();
+        }
+
+        document.getElementById('inSSN').readOnly = true;
+        document.getElementById('inFName').readOnly = true;
+        document.getElementById('inLName').readOnly = true;
+        document.getElementById('inBDate').readOnly = true;
+        document.getElementById('inAddress').readOnly = true;
+        document.getElementById('inSalary').readOnly = true;
+
+        document.getElementById('sex-m').disabled = true;
+        document.getElementById('sex-f').disabled = true;
+        document.getElementById('inDNo').disabled = true;
+        document.getElementById('inSuperSSN').disabled = true;
+
     });
 
 	//------------------------------------------------------------------------------------------------------------------

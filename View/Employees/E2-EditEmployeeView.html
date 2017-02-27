@@ -29,6 +29,10 @@
 
   <button id="btnEditEmployee" type="button" class="btn btn-primary pull-right button">Editar</button>
 
+  <div id="divBtnEdit" hidden="true">
+  <button id="btnCancelEdit"  type="button" class="btn btn-default pull-right button">Cancelar</button>
+  </div>
+
   <button id="btnDeleteEmployee" type="button" class="btn btn-danger pull-right button" data-toggle="modal" data-target="#myModalDiv">
   Eliminar</button>
 
@@ -46,7 +50,7 @@
               <label  class="control-label col-sm-4 required" style="padding-top:8px">SSN:</label>
               <i class="fa fa-asterisk text-danger"></i>
               <div class="col-sm-7">
-                  <input  id="inSSN" type="string" value="" class="form-control" placeholder="Numero de seguro social" style="margin-bottom:10px" readonly> </div>
+                  <input  id="inSSN" type="string" value="" class="form-control" placeholder="Numero de seguro social" style="margin-bottom:10px" readonly="true"> </div>
           </div>
 
           <div class="form-group">
@@ -109,11 +113,13 @@
 
 
             <h4>Dependientes</h4>
-            <button id="btnAddUser" type="button" class="btn btn-success pull-right button" data-toggle="modal" data-target="#myModalDiv">
+            <button id="btnAddUser" type="button" class="btn btn-primary pull-right button" data-toggle="modal" data-target="#myModalDiv">
             Agregar</button>
             <table id="tableDependents" class="table table-striped table-hover">
                 <thead>
                     <tr>
+                        <th hidden="true" class="edit"></th>
+                        <th hidden="true" class="edit"></th>
                         <th>Nombre</th>
                         <th>Fecha de nacimiento</th>
                         <th>Sexo</th>
@@ -125,13 +131,95 @@
                 </tbody>
             </table>
 
+            <!----------------------------------------------------------------------------------------------------------------->
+            <!--                                                    //Modal o dialogo que mostrara la pagina con formulario
+                                                                    //      el formulario puede variar                       -->
+            <div class="modal fade" id="myModalDiv" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                           <span aria-hidden="true">&times;</span>
+                           <span class="sr-only">Close</span>
+                    </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                        Agregar dependiente
+                    </h4>
+                </div>
+
+                    <!-- Modal Body -->
+                    <div class="modal-body">
+
+                        <div id="divSuccesD" class="alert alert-success alert-dismissable" hidden="true" >
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        </div>
+
+                        <div id="divAlertD" class="alert alert-danger alert-dismissable"hidden="true" >
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        </div>
+
+                        <form id="formAddDependent" class="form-horizontal" role="form">
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 required" style="padding-top:8px">Nombre(s):</label>
+                                <div class="col-sm-7">
+
+                                    <input  id="inNameD" type="string" value="" class="form-control" placeholder="Nombre completo" style="margin-bottom:10px"> </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 required" style="padding-top:8px">Fecha de nacimiento:</label>
+                                <div class="col-sm-7">
+                                    <input id="inBDateD" type="date" value="" class="form-control" placeholder="" style="margin-bottom:10px"> </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 required">Genero:</label>
+                                <div class="col-sm-8">
+                                    <input checked="true" type="radio" name="sx" id="sex-mD" value="M">
+                                    <label for="sex-m">M</label>
+                                    <input type="radio" name="sx" id="sex-fD" value="F">
+                                    <label for="sex-f">F</label>
+                                    <p></p>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-4 required" style="padding-top:8px">Direccion:</label>
+                                <div class="col-sm-7">
+                                    <input id="inRelationshipD" type="string" value="" class="form-control" placeholder="Spouse, son..." style="margin-bottom:10px"> </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Close
+                    </button>
+                        <button id="btnAdd" type="button" class="btn btn-primary">
+                        Agregar
+                    </button>
+                    </div>
+                </div>
+                </div>
+            </div>
+
 
             <h4>Proyectos</h4>
-            <button id="btnAddUser" type="button" class="btn btn-success pull-right button" data-toggle="modal" data-target="#myModalDiv">
+            <button id="btnAddUser" type="button" class="btn btn-primary pull-right button" data-toggle="modal" data-target="#myModalDiv">
             Agregar</button>
             <table id="" class="table table-striped table-hover">
                 <thead>
                     <tr>
+                        <th hidden="true" class="edit"></th>
                         <th>Nombre</th>
                         <th>Locacion</th>
                         <th>Departamento</th>
