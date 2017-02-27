@@ -93,6 +93,11 @@ $(document).ready(function ()
 									$("#btnAdd").toggle("slow");
 							}
 
+							if (!$("#divAlert").is(":hidden"))
+                            {
+                                $("#divAlert").toggle("slow");
+                            }
+
 						}
 						else
 						{

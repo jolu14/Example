@@ -12,29 +12,32 @@
 
 <body>
   <div class="container">
+
   <h2 id="lblEmployee">Empleado / </h2>
 
+  <div id="divSucces" class="alert alert-success alert-dismissable" hidden="true" >
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  </div>
 
-  <button id="btnAddUser" type="button" class="btn btn-primary pull-right button" data-toggle="modal" data-target="#myModalDiv">
-  Editar</button>
+  <div id="divAlert" class="alert alert-danger alert-dismissable" hidden="true" >
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  </div>
+
+  <div id="divBtnSave" hidden="true">
+    <button id="btnSaveEmployee" type="button" class="pull-right btn btn-success button">Guardar</button>
+  </div>
+
+  <button id="btnEditEmployee" type="button" class="btn btn-primary pull-right button">Editar</button>
 
   <button id="btnDeleteEmployee" type="button" class="btn btn-danger pull-right button" data-toggle="modal" data-target="#myModalDiv">
   Eliminar</button>
 
-  <button id="btnReturnToTable" type="button" class="btn btn-default button" data-toggle="modal" data-target="#myModalDiv">
-  Regresar</button>
+  <button id="btnReturnToTable" type="button" class="btn btn-default button">Regresar</button>
 
 </br>
 
-<div id="divSucces" class="alert alert-success alert-dismissable" hidden="true" >
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-</div>
 
-<div id="divAlert" class="alert alert-danger alert-dismissable"hidden="true" >
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-</div>
-
-<table class="table">
+<table id="formEmploye" class="table">
 
   <tr>
   <td>

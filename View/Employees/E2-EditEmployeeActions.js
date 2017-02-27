@@ -155,13 +155,28 @@ $(document).ready(function()
         }
     });
 
-    //------------------------------------------------------------------------------------------------------------------
+    //==================================================================================================================
     //														//Estos metodos ejecutan las opciones del menu central,
     //														//		carga la pagina deseada dentro del div.
     $("#btnReturnToTable").unbind().click(function()
     {
         console.log("btnReturnToTable");
         $("#divView").load("Employees/E1-EmployeeTableView.html");
+    });
+
+    //------------------------------------------------------------------------------------------------------------------
+    $("#btnEditEmployee").unbind().click(function()
+    {
+        console.log("btnEditEmployee");
+        if ($("#divBtnSave").is(":hidden"))
+        {
+            $("#divBtnSave").toggle("slow");
+        }
+
+        if (!$("#btnEditEmployee").is(":hidden"))
+        {
+            $("#btnEditEmployee").toggle("slow");
+        }
     });
 
 	//------------------------------------------------------------------------------------------------------------------
@@ -196,12 +211,20 @@ $(document).ready(function()
 									$("#divSucces").toggle("slow");
 							}
 
-							if (!$("#divView").is(":hidden"))
+							if (!$("#formEmploye").is(":hidden"))
 							{
-									$("#divView").toggle("slow");
+									$("#formEmploye").toggle("slow");
+							}
+
+                            if (!$("#btnDeleteEmployee").is(":hidden"))
+							{
 									$("#btnDeleteEmployee").toggle("slow");
 							}
 
+                            if (!$("#btnEditEmployee").is(":hidden"))
+							{
+									$("#btnEditEmployee").toggle("slow");
+							}
 						}
 						else
 						{
