@@ -9,7 +9,8 @@ $action = $_POST["action"];
 //======================================================================================================================
 //                                                          //Selecciona el metodo a ejecutar, se coloca solo por
 //                                                          //    estandar
-switch ($action){
+switch ($action)
+{
     case "echoGetAllEmployees": Company::echoGetAllEmployees();
           break;
     case "echoGetAllSupervisor": Company::echoGetAllSupervisor();
@@ -22,6 +23,9 @@ switch ($action){
           break;
     case "echoGetProyectsEmployee": Company::echoGetProyectsEmployee();
           break;
+    case "echoGetAllProject": Company::echoGetAllProject();
+          break;
+
 }
 
 //======================================================================================================================
@@ -160,8 +164,30 @@ class Company
       //                                                    //Se ejecuta el query deseado que esta almacendado en la
       //                                                    //    base de datos con stored procedures, que en este
       //                                                    //    caso solo es checara al usuario
-      $result = mysqli_query($connection, "SELECT p.pNAME, p.pLOCATION, d.dname FROM Works_On w JOIN Project p ON
+      $result = mysqli_query($connection, "SELECT p.pNAME, p.pLOCATION, d.dname, w.essn, w.pno, w.HOURS FROM Works_On w JOIN Project p ON
          w.PNO = p.pNUMBER JOIN Department d ON d.dnumber = p.dNum WHERE w.ESSN = $strSSN_I" );
+
+      $outArray = array();
+      if ($result)
+      {
+         while ($row = mysqli_fetch_row($result))
+         $outArray[] = $row;
+      }
+
+      print json_encode($outArray);
+   }
+
+   //-------------------------------------------------------------------------------------------------------------------
+   public static function echoGetAllProject()
+   {
+      //                                                    //Se crea la conexion a la base de datos
+      $connection = mysqli_connect(CompanyDB::$DB_SERVER,CompanyDB::$DB_USERNAME,CompanyDB::$DB_PASSWORD,
+         CompanyDB::$DB_DATABASE);
+
+      //                                                    //Se ejecuta el query deseado que esta almacendado en la
+      //                                                    //    base de datos con stored procedures, que en este
+      //                                                    //    caso solo es checara al usuario
+      $result = mysqli_query($connection, "SELECT pNUMBER, pNAME FROM Project" );
 
       $outArray = array();
       if ($result)

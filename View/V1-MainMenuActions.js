@@ -1,20 +1,39 @@
+
 //======================================================================================================================
-$(document).ready(function() {
-    //------------------------------------------------------------------------------------------------------------------
+$(document).ready(function()
+{
+    //==================================================================================================================
     //														//Prepara las configuraciones inicales para la pagina
     //														//		cargada. En este caso muestra la linea de seleccion
     //														//		en el	buton de empleados del menu central	y carga
     //														//		la pagina dentro del div. Se selecciono por default
     //														//		la pagina de empleados.
-    subShowOne("#divLineEmployee", "#divLineDepartment", "#divLineProjects", "#divLineReports");
-    $("#divView").load("Employees/E1-EmployeeTableView.html");
+    var strPageToLoad = getUrlParameter("show");
 
-    //------------------------------------------------------------------------------------------------------------------
+    if (strPageToLoad == "employees")
+    {
+        var strIdEmployee= getUrlParameter("id");
+        if (strIdEmployee != "null")
+        {
+            $("#divView").load("Employees/VE2-EditEmployeeDiv.html");
+        }
+        else
+        {
+            subShowOne("#divLineEmployee", "#divLineDepartment", "#divLineProjects", "#divLineReports");
+            $("#divView").load("Employees/VE1-EmployeeTableDiv.html");
+        }
+    }
+    else
+    {
+        window.location = 'V1-MainMenuView.html?show=employees';
+    }
+
+    //==================================================================================================================
     //														//Estos metodos ejecutan las opciones del menu central,
     //														//		carga la pagina deseada dentro del div.
     $("#btnShowEmployees").unbind().click(function() {
         subShowOne("#divLineEmployee", "#divLineDepartment", "#divLineProjects", "#divLineReports");
-        $("#divView").load("Employees/E1-EmployeeTableView.html");
+        window.location = 'V1-MainMenuView.html?show=employees';
     });
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -43,7 +62,7 @@ $(document).ready(function() {
         $(strIdToHide3_I).hide();
     }
 
-    //------------------------------------------------------------------------------------------------------------------
+    //==================================================================================================================
 });
 
 //======================================================================================================================

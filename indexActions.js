@@ -37,8 +37,9 @@ $(document).ready(function() {
 
                 //                                          //Si regresa 1 todo login se realizo de manera satisfactoria
                 //                                          //      e dirijo a la ventana de menu
-                if (jsonResponse == "1") {
-                    setTimeout('window.location.href = "View/V1-MainMenuView.html"; ');
+                if (jsonResponse == "1")
+                {
+                    window.location = 'View/V1-MainMenuView.html?show=employees';
                 }
             },
 
@@ -50,6 +51,7 @@ $(document).ready(function() {
 
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         });
+
 
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     });

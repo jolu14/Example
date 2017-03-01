@@ -94,10 +94,19 @@ $(document).ready(function ()
 							}
 
 							if (!$("#divAlert").is(":hidden"))
-                            {
-                                $("#divAlert").toggle("slow");
-                            }
+              {
+                  $("#divAlert").toggle("slow");
+              }
 
+							if ($("#btnCloseAndRefresh").is(":hidden"))
+              {
+                  $("#btnCloseAndRefresh").toggle();
+              }
+
+							if (!$("#btnClose").is(":hidden"))
+              {
+                  $("#btnClose").toggle();
+              }
 						}
 						else
 						{
@@ -119,4 +128,10 @@ $(document).ready(function ()
 
 
 	});
+
+	$("#btnCloseAndRefresh").on("click", function()
+	{
+		window.location = 'V1-MainMenuView.html?show=employees';
+	});
+
 });

@@ -1,11 +1,11 @@
 //======================================================================================================================
 $(document).ready(function()
 {
-
     //==================================================================================================================
-    //														                          //Prepara las configuraciones inicales para la pagina
-    //														                          //		cargada. Inicialmente se debe cargar todos los
+    //														//Prepara las configuraciones inicales para la pagina
+    //														//		cargada. Inicialmente se debe cargar todos los
     //                                                      //      empleados registrados a la tabla.
+
     var jsonData = {
         "action": "echoGetAllEmployees"
     };
@@ -49,7 +49,7 @@ $(document).ready(function()
     $("#btnAddUser").on("click", function()
     {
         //                                                  //Se obtine la inforamcion del html
-        $.post("Employees/E3-EmployeeDialogView.html", function(data)
+        $.post("Employees/VE3-EmployeeDialogDiv.html", function(data)
         {
             //                                              //Se despliega el modal
             $("#myModalDiv").html(data).fadeIn();
@@ -62,9 +62,7 @@ $(document).ready(function()
     $("#tbEmployee").on('click', 'tr', function(e)
     {
         //                                                  //Carga el formulario para mostrar la informacion;
-        $("#divView").load("Employees/E2-EditEmployeeView.html");
-        //                                                  //Establece el id del empleado en un hidden element
-        document.getElementById('lblSSN').value = $(this).attr('id');
+        window.location = 'V1-MainMenuView.html?show=employees&id=' + $(this).attr("id");
     });
 
     //==================================================================================================================
