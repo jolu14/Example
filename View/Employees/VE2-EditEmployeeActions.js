@@ -714,7 +714,8 @@ $(document).ready(function() {
     {
         console.log(strSSN);
         console.log(strDName);
-        $.when(deleteEmployeeDependent(strSSN, strDName)).done(function(){
+        $.when(deleteEmployeeDependent(strSSN, strDName)).done(function()
+        {
             $('#tbDependent').load(document.URL  +  ' #tbDependent');
             loadEmployeeDependents(true);
         });

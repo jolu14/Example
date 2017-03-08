@@ -23,6 +23,16 @@ $(document).ready(function()
             $("#divView").load("Employees/VE1-EmployeeTableDiv.html");
         }
     }
+    else if (strPageToLoad == "departments")
+    {
+        subShowOne("#divLineDepartment", "#divLineEmployee", "#divLineProjects", "#divLineReports");
+        $("#divView").load("Departments/VD1-DepartmentTableDiv.html");
+    }
+    else if (strPageToLoad == "projects")
+    {
+        subShowOne("#divLineProjects", "#divLineEmployee", "#divLineDepartment", "#divLineReports");
+        $("#divView").load("Projects/VP1-ProjectsTableDiv.html");
+    }
     else
     {
         window.location = 'V1-MainMenuView.html?show=employees';
@@ -39,13 +49,13 @@ $(document).ready(function()
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     $("#btnShowDepartments").unbind().click(function() {
         subShowOne("#divLineDepartment", "#divLineEmployee", "#divLineProjects", "#divLineReports");
-        $("#divView").load("xx");
+        window.location = 'V1-MainMenuView.html?show=departments';
     });
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     $("#btnShowProjects").unbind().click(function() {
         subShowOne("#divLineProjects", "#divLineEmployee", "#divLineDepartment", "#divLineReports");
-        $("#divView").load("xx");
+        window.location = 'V1-MainMenuView.html?show=projects';
     });
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

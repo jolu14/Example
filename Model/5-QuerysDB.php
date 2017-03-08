@@ -25,6 +25,11 @@ switch ($action)
           break;
     case "echoGetAllProject": Company::echoGetAllProject();
           break;
+    case "echoGetDepartmentTable": Company::echoGetDepartmentTable();
+          break;
+    case "echoGetProjectTable": Company::echoGetProjectTable();
+          break;
+
 
 }
 
@@ -93,6 +98,52 @@ class Company
       //                                                    //    base de datos con stored procedures, que en este
       //                                                    //    caso solo es checara al usuario
       $result = mysqli_query($connection, "SELECT DNUMBER, DNAME FROM Department");
+
+      $outArray = array();
+      if ($result)
+      {
+         while ($row = mysqli_fetch_row($result))
+         $outArray[] = $row;
+      }
+
+      print json_encode($outArray);
+   }
+
+   //-------------------------------------------------------------------------------------------------------------------
+   public static function echoGetDepartmentTable()
+   {
+      //                                                    //Se crea la conexion a la base de datos
+      $connection = mysqli_connect(CompanyDB::$DB_SERVER,CompanyDB::$DB_USERNAME,CompanyDB::$DB_PASSWORD,
+         CompanyDB::$DB_DATABASE);
+
+      //                                                    //Se ejecuta el query deseado que esta almacendado en la
+      //                                                    //    base de datos con stored procedures, que en este
+      //                                                    //    caso solo es checara al usuario
+      $result = mysqli_query($connection, "SELECT D.DNUMBER, D.DNAME, CONCAT(FNAME, ' ' ,LNAME) FROM Department D  JOIN
+      Employee E ON D.MGRSSN = E.SSN");
+
+      $outArray = array();
+      if ($result)
+      {
+         while ($row = mysqli_fetch_row($result))
+         $outArray[] = $row;
+      }
+
+      print json_encode($outArray);
+   }
+
+   //-------------------------------------------------------------------------------------------------------------------
+   public static function echoGetProjectTable()
+   {
+      //                                                    //Se crea la conexion a la base de datos
+      $connection = mysqli_connect(CompanyDB::$DB_SERVER,CompanyDB::$DB_USERNAME,CompanyDB::$DB_PASSWORD,
+         CompanyDB::$DB_DATABASE);
+
+      //                                                    //Se ejecuta el query deseado que esta almacendado en la
+      //                                                    //    base de datos con stored procedures, que en este
+      //                                                    //    caso solo es checara al usuario
+      $result = mysqli_query($connection, "SELECT p.pnumber, p.pname, p.plocation, D.DNAME FROM Project p  JOIN
+      Department D ON D.dnumber = p.dnum");
 
       $outArray = array();
       if ($result)
