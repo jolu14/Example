@@ -1,0 +1,59 @@
+//======================================================================================================================
+$(document).ready(function()
+{
+    //==================================================================================================================
+    //														//Prepara las configuraciones inicales para la pagina
+    //														//		cargada. Inicialmente se debe cargar todos los
+    //                                                      //      empleados registrados a la tabla.
+
+    subLoadReport();
+
+    //==================================================================================================================
+    function subLoadReport()
+    {
+        var jsonData =
+        {
+            "strDate1_I": $("#inDate1").val(),
+            "strDate2_I": $("#inDate2").val(),
+            "action": "echoQUERY"
+        };
+
+        // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        $.ajax({
+            url: "../Model/5-QuerysDB.php",
+            type: "POST",
+            data: jsonData,
+
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+            success: function(jsonResponse)
+            {
+                console.log(jsonResponse);
+                //                                              //Pasa la informacion a un arreglo entendibel por js y
+                //                                              //      adjunta a la tabla.
+                var dataArray = jQuery.parseJSON(jsonResponse);
+
+                    for (var x = 0; x < dataArray.length; x++)
+                    {
+                        console.log(x);
+                        $("#tblReporteX").append(
+                            "<tr id=\"" + dataArray[x][0] + "\"><td>" + dataArray[x][0] +
+                            "</td><td>" + dataArray[x][1] +
+                            "</td>");
+                        }
+            }
+
+            // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+        });
+    }
+
+    //------------------------------------------------------------------------------------------------------------------
+    $("#btnLoadReportX").unbind().click( function()
+    {
+        $("#tblReporteX > tr").remove();
+        subLoadReport();
+    });
+
+    //==================================================================================================================
+});
+
+//======================================================================================================================

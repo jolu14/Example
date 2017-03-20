@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../styles.css" />
+
+</head>
+
+<body>
+
+    <div class="modal-dialog">
+<div class="modal-content">
+    <!-- Modal Header -->
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+           <span aria-hidden="true">&times;</span>
+           <span class="sr-only">Close</span>
+    </button>
+        <h4 class="modal-title" id="myModalLabel">
+        Proyecto
+    </h4>
+</div>
+
+    <!-- Modal Body -->
+    <div id="ProjectView" class="modal-body">
+
+        <form id="formAddEmployee" class="form-horizontal" role="form">
+
+            <div class="form-group">
+                <label  class="control-label col-sm-4 required" style="padding-top:8px">Numero de proyecto:</label>
+                <i class="fa fa-asterisk text-danger" readOnly></i>
+                <div class="col-sm-7">
+                    <input  id="inPNumber" type="string" value="" class="form-control" placeholder="###" style="margin-bottom:10px"> </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4 required" style="padding-top:8px">Nombre de proyecto:</label>
+                <div class="col-sm-7">
+                    <input  id="inPName" type="string" value="" class="form-control" placeholder="..." style="margin-bottom:10px"> </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4 required" style="padding-top:8px">Ubicación:</label>
+                <div class="col-sm-7">
+                    <input  id="inPLocation" type="string" value="" class="form-control" placeholder="..." style="margin-bottom:10px"> </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-4 required" style="padding-top:8px">Departamento:</label>
+                <select id="inDNumb" name="inDNum" class="form-control col-sm-8" style="width:280px; margin-left:15px; margin-bottom:10px;">
+                  <option value="null">Sin departamento</option>
+                </select>
+            </div>
+
+        </form>
+
+
+        <div class="form-group" style="padding-left:60px; padding-right:60px">
+        <h4>Empleados asignados</h4>
+
+        <table id="" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>SSN</th>
+                    <th>Nombre</th>
+                </tr>
+            </thead>
+            <tbody id="tbEAssigned">
+
+            </tbody>
+        </table>
+    </div>
+
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="modal-footer">
+        <button id="btnClose" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button id="btnDelP" type="button" class="btn btn-danger">Eliminar</button>
+        <button id="btnSaveP" type="button" class="btn btn-success">Guardar</button>
+    </div>
+</div>
+</div>
+
+<!--=================================================================================================================-->
+<script src="Projects/VP2-EditProjectDialogActions.js"></script>
+
+<html>

@@ -25,7 +25,7 @@ $(document).ready(function()
             for (var x = 0; x < dataArray.length; x++)
             {
                 $("#tbEmployee").append(
-                    "<tr id=\"" + dataArray[x][0] + "\"style=\"cursor: pointer\"><td>" + dataArray[x][0] +
+                    "<tr id=\"" + dataArray[x][0] + "\"><td>" + dataArray[x][0] +
                     "</td><td>" + dataArray[x][1] +
                     "</td><td>" + dataArray[x][2] +
                     "</td><td>" + dataArray[x][3] +
@@ -34,7 +34,9 @@ $(document).ready(function()
                     "</td><td>" + dataArray[x][6] +
                     "</td><td>" + dataArray[x][7] +
                     "</td><td>" + dataArray[x][8] +
-                    "</td></tr>");
+                    "</td>" + "<td><p data-placement=\"top\" data-toggle=\"tooltip\" title=\"Delete\"><button " +
+                    "class=\" btn btn-primary btn-xs \" ><span class=\"glyphicon glyphicon-edit\"></span></button></p" +
+                    "></td></tr>");
             }
         }
 
@@ -59,10 +61,10 @@ $(document).ready(function()
     //------------------------------------------------------------------------------------------------------------------
     //                                                      //Click en un renglon de la tabla despliega la informacion
     //                                                      //      completa del empleado
-    $("#tbEmployee").on('click', 'tr', function(e)
+    $("#tbEmployee").on('click', 'button', function(e)
     {
         //                                                  //Carga el formulario para mostrar la informacion;
-        window.location = 'V1-MainMenuView.html?show=employees&id=' + $(this).attr("id");
+        window.location = 'V1-MainMenuView.html?show=employees&id=' + $(this).parents('tr').attr("id");
     });
 
     //==================================================================================================================

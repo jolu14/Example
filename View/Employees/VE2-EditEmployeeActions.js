@@ -139,11 +139,11 @@ $(document).ready(function() {
 
     //------------------------------------------------------------------------------------------------------------------
 
-    loadEmployeeDependents(true);
+    loadEmployeeDependents(false);
 
     //------------------------------------------------------------------------------------------------------------------
 
-    loadEmployeeProjects(true);
+    loadEmployeeProjects(false);
 
     //==================================================================================================================
     //														//Estos metodos ejecutan las opciones del menu central,
@@ -186,6 +186,42 @@ $(document).ready(function() {
         document.getElementById('sex-f').disabled = false;
         document.getElementById('inDNo').disabled = false;
         document.getElementById('inSuperSSN').disabled = false;
+
+    });
+
+    //------------------------------------------------------------------------------------------------------------------
+    $("#btnCancelEditEmployee").unbind().click(function()
+    {
+        $(".edit").hide();
+
+
+        if (!$("#btnUpdateEmployeeDiv").is(":hidden")) {
+            $("#btnUpdateEmployeeDiv").toggle();
+        }
+
+        if (!$("#divBtnEdit").is(":hidden")) {
+            $("#divBtnEdit").toggle();
+        }
+
+        if ($("#btnEditEmployee").is(":hidden")) {
+            $("#btnEditEmployee").toggle();
+        }
+        if ($("#btnDeleteEmployee").is(":hidden")) {
+            $("#btnDeleteEmployee").toggle();
+        }
+
+
+        document.getElementById('inSSN').readOnly = true;
+        document.getElementById('inFName').readOnly = true;
+        document.getElementById('inLName').readOnly = true;
+        document.getElementById('inBDate').readOnly = true;
+        document.getElementById('inAddress').readOnly = true;
+        document.getElementById('inSalary').readOnly = true;
+
+        document.getElementById('sex-m').disabled = true;
+        document.getElementById('sex-f').disabled = true;
+        document.getElementById('inDNo').disabled = true;
+        document.getElementById('inSuperSSN').disabled = true;
 
     });
 
@@ -250,28 +286,18 @@ $(document).ready(function() {
 
                 if (str.includes("Success"))
                 {
-                    $("#divSucces").html(jsonResponse);
-                    if ($("#divSucces").is(":hidden"))
-                    {
-                        $("#divSucces").toggle("slow");
-                    }
+                    subShowNotify(jsonResponse,'success',8000);
+                    window.location = 'V1-MainMenuView.html?show=employees';
                 }
                 else
                 {
-                    $("#divAlert").html(jsonResponse);
-                    if ($("#divAlert").is(":hidden"))
-                    {
-                        $("#divAlert").toggle("slow");
-                    }
+                    subShowNotify(jsonResponse,'danger',8000);
                 }
             },
 
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             error: function(errorMessage) {
-                $("#divAlert").html(errorMessage);
-                if ($("#divAlert").is(":hidden")) {
-                    $("#divAlert").toggle("slow");
-                }
+                subShowNotify(errorMessage,'danger',8000);
             }
 
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -313,27 +339,20 @@ $(document).ready(function() {
 
                 if (str.includes("Success"))
                 {
-                    $("#divSucces").html(jsonResponse);
-                    if ($("#divSucces").is(":hidden"))
-                    {
-                        $("#divSucces").toggle("slow");
-                    }
+                    subShowNotify(jsonResponse,'success',8000);
+
 
                 } else
                 {
-                    $("#divAlert").html(jsonResponse);
-                    if ($("#divAlert").is(":hidden")) {
-                        $("#divAlert").toggle("slow");
-                    }
+                    subShowNotify(jsonResponse,'danger',8000);
+
                 }
             },
 
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             error: function(errorMessage) {
-                $("#divAlert").html(errorMessage);
-                if ($("#divAlert").is(":hidden")) {
-                    $("#divAlert").toggle("slow");
-                }
+                subShowNotify(jsonResponse,'danger',8000);
+
             }
 
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -378,11 +397,7 @@ $(document).ready(function() {
 
                 if (str.includes("Success"))
                 {
-                    $("#divPorjectSucces").html(jsonResponse);
-                    if ($("#divPorjectSucces").is(":hidden"))
-                    {
-                        $("#divPorjectSucces").toggle("slow");
-                    }
+                    subShowNotify(jsonResponse,'success',8000);
 
                     console.log(document.URL  +  ' #tbProjects');
                     $('#tbProjects').load(document.URL  +  ' #tbProjects');
@@ -398,19 +413,15 @@ $(document).ready(function() {
                 }
                 else
                 {
-                    $("#divProjectAlert").html(jsonResponse);
-                    if ($("#divProjectAlert").is(":hidden")) {
-                        $("#divProjectAlert").toggle("slow");
-                    }
+                    subShowNotify(jsonResponse,'danger',8000);
+
                 }
             },
 
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             error: function(errorMessage) {
-                $("#divProjectAlert").html(errorMessage);
-                if ($("#divProjectAlert").is(":hidden")) {
-                    $("#divProjectAlert").toggle("slow");
-                }
+                subShowNotify(errorMessage,'danger',8000);
+
             }
 
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -521,30 +532,19 @@ $(document).ready(function() {
 
                 if (str.includes("Success"))
                 {
-                    $("#divDelePe").html(jsonResponse);
-                    if ($("#divDelePe").is(":hidden"))
-                    {
-                        $("#divDelePe").toggle("slow");
-                    }
+                    subShowNotify(jsonResponse,'success',8000);
                     strPNo ="";
                 }
                 else
                 {
-                    $("#divDelePe").html(jsonResponse);
-                    if ($("#divDelePe").is(":hidden"))
-                    {
-                        $("#divDelePe").toggle("slow");
-                    }
+                    subShowNotify(jsonResponse,'danger',8000);
                 }
 
             },
 
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             error: function(errorMessage) {
-                $("#divDelePe").html(errorMessage);
-                if ($("#divDelePe").is(":hidden")) {
-                    $("#divDelePe").toggle("slow");
-                }
+                subShowNotify(errorMessage,'danger',8000);
             }
 
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -578,30 +578,19 @@ $(document).ready(function() {
 
                 if (str.includes("Success"))
                 {
-                    $("#divDeleDep").html(jsonResponse);
-                    if ($("#divDeleDep").is(":hidden"))
-                    {
-                        $("#divDeleDep").toggle("slow");
-                    }
+                    subShowNotify(jsonResponse,'success',8000);
                     strDName ="";
                 }
                 else
                 {
-                    $("#divDeleDep").html(jsonResponse);
-                    if ($("#divDeleDep").is(":hidden"))
-                    {
-                        $("#divDeleDep").toggle("slow");
-                    }
+                    subShowNotify(jsonResponse,'danger',8000);
                 }
 
             },
 
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             error: function(errorMessage) {
-                $("#divDeleDep").html(errorMessage);
-                if ($("#divDeleDep").is(":hidden")) {
-                    $("#divDeleDep").toggle("slow");
-                }
+                subShowNotify(jsonResponse,'danger',8000);
             }
 
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -627,7 +616,7 @@ $(document).ready(function() {
 
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         $.ajax({
-            url: "../Model/4-TransactionsDB.php",
+            url: "../Controller/4-TransactionsController.php",
             type: "POST",
             data: jsonData3,
 
@@ -638,11 +627,7 @@ $(document).ready(function() {
 
                 if (str.includes("Success"))
                 {
-                    $("#divAddDepSucces").html(jsonResponse);
-                    if ($("#divAddDepSucces").is(":hidden"))
-                    {
-                        $("#divAddDepSucces").toggle("slow");
-                    }
+                    subShowNotify(jsonResponse,'success',8000);
 
                     if (!$("#formAddDependent").is(":hidden"))
                     {
@@ -652,11 +637,7 @@ $(document).ready(function() {
                 }
                 else
                 {
-                    $("#divAddDepAlert").html(jsonResponse);
-                    if ($("#divAddDepAlert").is(":hidden"))
-                    {
-                        $("#divAddDepAlert").toggle("slow");
-                    }
+                    subShowNotify(jsonResponse,'danger',8000);
 
                 }
 
@@ -664,10 +645,7 @@ $(document).ready(function() {
 
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
             error: function(errorMessage) {
-                $("#divAddDepAlert").html(errorMessage);
-                if ($("#divAddDepAlert").is(":hidden")) {
-                    $("#divAddDepAlert").toggle("slow");
-                }
+                subShowNotify(jsonResponse,'danger',8000);
             }
 
             // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -728,8 +706,9 @@ $(document).ready(function() {
     {
         $.when(addDependet()).done(function()
         {
-            $('#tbDependent').load(document.URL  +  ' #tbDependent');
-            loadEmployeeDependents(true);
+            $("#tbDependent > tr").remove();
+            $('#btnAddDependent').hide();
+            loadEmployeeDependents(false);
         });
 
     });

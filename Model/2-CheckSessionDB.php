@@ -14,11 +14,9 @@ else
 }
 
 $now = time();
-
 if($now > $_SESSION['expire'])
 {
 		session_destroy();
-
 		echo "0";
 		exit;
 }

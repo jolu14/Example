@@ -23,7 +23,7 @@ CREATE TABLE Employee(
 	FOREIGN KEY(DNo) REFERENCES Department(DNumber)
 );
 
-ALTER TABLE Department 
+ALTER TABLE Department
 ADD FOREIGN KEY(MgrSsn) REFERENCES Employee(Ssn);
 
 
@@ -72,28 +72,28 @@ INSERT INTO Department VALUES('Headquarters', '1', null, null);
 
 
 
-insert into Employee values ('James', 'E', 'Borg', 
+insert into Employee values ('James', 'E', 'Borg',
 888665555, '1937-11-10', '450 Stone, Houston, TX', 'M', 55000, null, 1);
 
 insert into Employee values ('Franklin','T','Wong',
 333445555,'1955-12-08','638 Voss, Houston, TX','M',40000,888665555,5);
 
-insert into Employee values ('John','B','Smith', 
+insert into Employee values ('John','B','Smith',
 123456789,'1965-01-09','731 Fondren, Houston, TX','M',30000,333445555,5);
 
-insert into Employee values ('Jennifer','S', 'Wallace', 
+insert into Employee values ('Jennifer','S', 'Wallace',
 987654321, '1941-06-20', '291 Berry, Bellaire, TX', 'F', 43000, 888665555, 4);
 
 insert into Employee values ('Alicia','J','Zelaya',
 999887777,'1968-01-19','3321 Castle, Spring, TX','F',25000,987654321,4);
 
-insert into Employee values ('Ramash', 'K', 'Narayan', 
+insert into Employee values ('Ramash', 'K', 'Narayan',
 666884444, '1962-09-15', '975 Fire Oak, Humble, TX', 'M', 38000, 333445555, 5);
 
-insert into Employee values ('Joyce', 'A', 'English', 
+insert into Employee values ('Joyce', 'A', 'English',
 453453453, '1972-07-31', '5631 Rice, Houston, TX', 'F', 25000, 333445555, 5);
 
-insert into Employee values ('Ahmad', 'V', 'Jabbar', 
+insert into Employee values ('Ahmad', 'V', 'Jabbar',
 987987987, '1969-03-29', '980 Dallas, Houston, TX', 'M', 25000, 987654321, 4);
 
 
@@ -147,3 +147,63 @@ Insert into Dept_Locations VALUES('5','Houston');
 
 COMMIT;
 
+
+
+/######################################################################################################################
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `stpAddEmployee`(IN `strSSN_I` TEXT, IN `strFName_I` TEXT, IN `strLName_I` TEXT, IN `strBDate_I` DATE, IN `strAddress_I` TEXT, IN `strSex_I` VARCHAR(1), IN `strSalary_I` DECIMAL, IN `strSuperSSN_I` TEXT, IN `strDNo_I` INT)
+INSERT INTO Employee (SSN, FNAME, LNAME, BDATE, ADDRES, SEX, SALARY,SUPERSSN, DNO)
+                  VALUES (strSSN_I,strFName_I, strLName_I, strBDate_I, strAddress_I, strSex_I,
+                     strSalary_I, strSuperSSN_I,strDNo_I)
+
+/######################################################################################################################
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `stpCheckUser`(IN `param1` CHAR(9))
+SELECT * FROM Employee WHERE Ssn = param1
+
+/######################################################################################################################
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `stpCheckUserPassword`(IN `param1` CHAR(9), IN `param2` TEXT)
+SELECT * FROM Employee WHERE Ssn = param1 AND lname = param2
+
+/######################################################################################################################
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `stpDeleteDepartment`(IN `pardnum` CHAR(1))
+    MODIFIES SQL DATA
+BEGIN
+SET AUTOCOMMIT=0;
+START TRANSACTION;
+
+DELETE FROM dept_locations WHERE pardnum = dnumber;
+DELETE FROM Department WHERE pardnum = dnumber;
+SET AUTOCOMMIT=1;
+Select * from Department where pardnum = DNumber;
+END
+
+/######################################################################################################################
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `stpDeleteEmployee`(IN `ssn1` CHAR(9))
+BEGIN
+SET AUTOCOMMIT=0;
+START TRANSACTION;
+DELETE FROM works_on WHERE ESSN = ssn1;
+DELETE FROM dependent WHERE ESSN = ssn1;
+DELETE FROM Employee WHERE SSN = ssn1;
+SET AUTOCOMMIT=1;
+Select * from Employee where ssn = ssn1;
+END
+
+/######################################################################################################################
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `stpDeleteProject`(IN `pardnum` INT)
+BEGIN
+SET AUTOCOMMIT=0;
+START TRANSACTION;
+
+DELETE FROM works_on WHERE pardnum = pno;
+DELETE FROM project WHERE pardnum = pnumber;
+SET AUTOCOMMIT=1;
+Select * from project where pardnum = pNumber;
+END
+
+/######################################################################################################################

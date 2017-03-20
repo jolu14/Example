@@ -21,20 +21,12 @@
            <span class="sr-only">Close</span>
     </button>
         <h4 class="modal-title" id="myModalLabel">
-        Agregar departamento
+        Departamento
     </h4>
 </div>
 
     <!-- Modal Body -->
     <div class="modal-body">
-
-        <div id="divSucces" class="alert alert-success alert-dismissable" hidden="true" >
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        </div>
-
-        <div id="divAlert" class="alert alert-danger alert-dismissable"hidden="true" >
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        </div>
 
         <form id="formAddEmployee" class="form-horizontal" role="form">
 
@@ -42,7 +34,7 @@
                 <label  class="control-label col-sm-4 required" style="padding-top:8px">Numero de departamento:</label>
                 <i class="fa fa-asterisk text-danger" readOnly></i>
                 <div class="col-sm-7">
-                    <input  id="inDNUM" type="string" value="" class="form-control" placeholder="###" style="margin-bottom:10px"> </div>
+                    <input  id="inDNumber" type="string" value="" class="form-control" placeholder="###" style="margin-bottom:10px"> </div>
             </div>
 
             <div class="form-group">
@@ -52,25 +44,41 @@
                     <input  id="inDName" type="string" value="" class="form-control" placeholder="Nombre" style="margin-bottom:10px"> </div>
             </div>
 
+            <input  id="inMSSN" value="" hidden="true"> </input>
             <div class="form-group">
-                <label class="control-label col-sm-4" style="padding-top:8px">Manager:</label>
+                <label class="control-label col-sm-4 required" style="padding-top:8px">Manager:</label>
                 <select id="inManagerSSN" name="superssn" class="form-control col-sm-8" style="width:280px; margin-left:15px; margin-bottom:10px;">
                   <option value="null">Sin manager</option>
                 </select>
             </div>
-
-
         </form>
+
+        <div class="form-group" style="padding-left:60px; padding-right:60px">
+        <h4 class="col-md-2">Locaciones</h4>
+
+        <input  id="inNewLoc" type="string" value="" class="form-control col-sm-8" style="margin-bottom:10px" placeholder="Nueva locacion"> </input>
+        <button id="btnAddLoc" type="button" class="btn btn-primary pull-right btn-xs"><span class="glyphicon glyphicon-plus"></span></button>
+        <table id="tableLoc" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Locacion</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tbLoc">
+
+            </tbody>
+        </table>
+        </div>
 
     </div>
 
     <!-- Modal Footer -->
     <div class="modal-footer">
-        <div id="btnCloseAndRefresh"  hidden="true">
-        <button id="btnCloseAndRefresh" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+
         <button id="btnClose" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button id="btnAdd" type="button" class="btn btn-success">Guardar</button>
+        <button id="btnDelDep" type="button" class="btn btn-danger">Eliminar</button>
+        <button id="btnSaveDept" type="button" class="btn btn-success">Guardar</button>
     </div>
 </div>
 </div>

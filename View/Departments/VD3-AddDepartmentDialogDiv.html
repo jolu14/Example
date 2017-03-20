@@ -28,28 +28,20 @@
     <!-- Modal Body -->
     <div class="modal-body">
 
-        <div id="divSucces" class="alert alert-success alert-dismissable" hidden="true" >
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        </div>
-
-        <div id="divAlert" class="alert alert-danger alert-dismissable"hidden="true" >
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        </div>
-
-        <form id="formAddEmployee" class="form-horizontal" role="form">
+        <form id="formAddDep" class="form-horizontal" role="form">
 
             <div class="form-group">
                 <label  class="control-label col-sm-4 required" style="padding-top:8px">Numero de departamento:</label>
                 <i class="fa fa-asterisk text-danger"></i>
                 <div class="col-sm-7">
-                    <input  id="inSSN" type="string" value="" class="form-control" placeholder="###" style="margin-bottom:10px"> </div>
+                    <input  id="inDNumber" type="string" value="" class="form-control" placeholder="###" style="margin-bottom:10px"> </div>
             </div>
 
             <div class="form-group">
                 <label class="control-label col-sm-4 required" style="padding-top:8px">Nombre del departamento:</label>
                 <div class="col-sm-7">
 
-                    <input  id="inFName" type="string" value="" class="form-control" placeholder="Nombre" style="margin-bottom:10px"> </div>
+                    <input  id="inDName" type="string" value="" class="form-control" placeholder="Nombre" style="margin-bottom:10px"> </div>
             </div>
 
             <div class="form-group">
@@ -70,11 +62,11 @@
         <button id="btnCloseAndRefresh" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
         <button id="btnClose" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button id="btnAdd" type="button" class="btn btn-primary">Agregar</button>
+        <button id="btnAddDep" type="button" class="btn btn-primary">Agregar</button>
     </div>
 </div>
 </div>
 
 </body>
-<script src="Employees/VE3-EmployeeDialogActions.js"></script>
+<script src="Departments/VD3-AddDepartmentDialogActions.js"></script>
 <html>

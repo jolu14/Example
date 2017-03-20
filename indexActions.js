@@ -20,7 +20,7 @@ $(document).ready(function() {
 
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
         $.ajax({
-            url: "Model/1-LoginDB.php",
+            url: "Controller/1-LoginController.php",
             type: "POST",
             data: jsonData,
 

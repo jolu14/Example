@@ -1,0 +1,62 @@
+A. Crear el Stored procedure
+  1. En phpMyAdmin abre la base de datos "company"
+  2. Selecciona "procedimientos" y has click en "Nuevo" o "Agregar rutina"
+  3. Escribe el nombre de la rutina, ejemplo "stpAAABBB"
+  4. El tipo es "PROCEDURE"
+  5. Agrega los parametros necesarios y su tipo, ejemplo "DIRECCION"=IN,  "NOMBRE"=param1, "TIPO"=CHAR, "LONGITUD"=9
+  6. Escribe el query en "Definicion" utiliza los parametros para el "WHERE", ejemplo SELECT * FROM Employee WHERE Ssn = param1
+  7. "Acceso de datos SQL" selecciona "CONTAINS SQL"
+  8. Selecciona "continuar"
+  9. En la seccion de procedimientos ejecutalo para verificar que funcione correctamente.
+
+B. Crear View
+  1. Crea dos archivos nuevos dentro de la carpeta de "Reports", un .js y un .html
+     ejemplo, VRX-EmpleadosPorSSNActions.js y VRX-EmpleadosPorSSNDiv.html
+  2. Copia el contenido de PlantellaReportehtml.txt en el html, modifica las columnas a las que regresara el query, modifica
+     el nombre del archivo.js vinculado y los botones que vas a necesitar.
+  3. Copia el contenido de PlantellaReporteJS.txt en el js, modifica el for que esta dentro de ahi cada <td> que imprime
+     las columnas de un elemento agrega los td necesarios o elimina los extras , cambia el nombre del query a ejecutar
+     "echoQUERY"
+
+C. Los datos que se reciben estan limitados por el input de html no es necesario pasar por la capa de Controller entonces
+  omitiremos esta capa
+
+D. Crear Model
+  1. Dentro del documento 5-QuerysDB.php en Model agrega un case al switch, ejemplo
+
+     case "echoQUERY": Company::echoQUERY();
+      break;
+
+     OJO. el nombre "echoQUERY" debe ser el mismo que el que escribiste en el js de View y unico dentro del file
+
+  2. Agrega el metodo nuevo dentro de la clase Company con la siguiente plantilla:
+
+  //-------------------------------------------------------------------------------------------------------------------
+  public static function echoQUERY()
+  {
+    $strDate1_I = $_POST["strDate1_I"];
+    $strDate2_I = $_POST["strDate2_I"];
+     //                                                    //Se crea la conexion a la base de datos
+     $connection = mysqli_connect(CompanyDB::$DB_SERVER,CompanyDB::$DB_USERNAME,CompanyDB::$DB_PASSWORD,
+        CompanyDB::$DB_DATABASE);
+
+     //                                                    //Se ejecuta el query deseado que esta almacendado en la
+     //                                                    //    base de datos con stored procedures, que en este
+     //                                                    //    caso solo es checara al usuario
+
+     $result = mysqli_query($connection, "CALL stpAAABBB('$strDate1_I',$strDate2_I)" );
+
+     $outArray = array();
+     if ($result)
+     {
+        while ($row = mysqli_fetch_row($result))
+        $outArray[] = $row;
+     }
+
+     print json_encode($outArray);
+  }
+
+  OJO. los parametros del CALL stpAAABBB() se les agrega una comilla simple si se va enviar un string, un date si se envia
+  un numero se escribe solo el nombre de la variable
+
+E. Listo prueba el query!!!

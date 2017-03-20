@@ -31,10 +31,10 @@
         <button id="btnEditEmployee" type="button" class="btn btn-primary pull-right button">Editar</button>
 
         <div id="divBtnEdit" hidden="true">
-            <button id="btnCancelEdit" type="button" class="btn btn-default pull-right button">Cancelar</button>
+            <button id="btnCancelEditEmployee" type="button" class="btn btn-default pull-right button">Cancelar</button>
         </div>
 
-        <button id="btnDeleteEmployee" type="button" class="btn btn-danger pull-right button">Eliminar</button>
+        <button id="" type="button" data-toggle="modal" data-target="#deleteEmp" class="btn btn-danger pull-right button">Eliminar</button>
 
         <button id="btnReturnToTable" type="button" class="btn btn-default button">Todos los empleados</button>
 
@@ -145,7 +145,7 @@
                                         <th>Horas</th>
                                     </tr>
                                 </thead>
-                                <tbody onload="myFunction()" id="tbProjects">
+                                <tbody id="tbProjects">
 
                                 </tbody>
                             </table>
@@ -292,8 +292,9 @@
 
                                         </div>
                                         <div class="modal-footer ">
-                                            <button id="btnDelePe" type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+                                            <button id="btnDelePe" type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok-sign"></span> Si</button>
+
                                         </div>
                                     </div>
                                     <!-- /.modal-content -->
@@ -314,14 +315,40 @@
 
                                         </div>
                                         <div class="modal-footer ">
-                                            <button id="btnDeleDep" type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
                                             <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+                                            <button id="btnDeleDep" type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok-sign"></span> Si</button>
+
                                         </div>
                                     </div>
                                     <!-- /.modal-content -->
                                 </div>
                                 <!-- /.modal-dialog -->
                             </div>
+
+                            <div class="modal fade" id="deleteEmp" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                            <h4 class="modal-title custom_align" id="Heading">Eliminar empleado</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div id="divDeleDep" class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Estas seguro de eliminar este empleado, sus dependientes y asignaciones?</div>
+
+                                        </div>
+                                        <div class="modal-footer ">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+                                            <button id="btnDeleteEmployee" type="button" class="btn btn-success"><span class="glyphicon glyphicon-ok-sign"></span> Si</button>
+
+                                        </div>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+
+
 
     </div>
 </body>

@@ -71,7 +71,7 @@ $(document).ready(function ()
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 		$.ajax({
-				url: "../Model/4-TransactionsDB.php",
+				url: "../Controller/4-TransactionsController.php",
 				type: "POST",
 				data: jsonData3,
 
@@ -81,57 +81,29 @@ $(document).ready(function ()
 					var str = jsonResponse;
 					if (str.includes("Success"))
 					{
-							$("#divSucces").html(jsonResponse);
-							if ($("#divSucces").is(":hidden"))
-							{
-									$("#divSucces").toggle("slow");
-							}
+							subShowNotify(jsonResponse,'success',8000);
 
 							if (!$("#formAddEmployee").is(":hidden"))
 							{
 									$("#formAddEmployee").toggle("slow");
 									$("#btnAdd").toggle("slow");
 							}
-
-							if (!$("#divAlert").is(":hidden"))
-              {
-                  $("#divAlert").toggle("slow");
-              }
-
-							if ($("#btnCloseAndRefresh").is(":hidden"))
-              {
-                  $("#btnCloseAndRefresh").toggle();
-              }
-
-							if (!$("#btnClose").is(":hidden"))
-              {
-                  $("#btnClose").toggle();
-              }
 						}
 						else
 						{
-								$("#divAlert").html(jsonResponse);
-								if ($("#divAlert").is(":hidden"))
-								{
-									$	("#divAlert").toggle("slow");
-								}
+								subShowNotify(jsonResponse,'danger',8000);
 					 }
 				},
 
 				// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 				error: function(errorMessage) {
-
+					subShowNotify(jsonResponse,'danger',8000);
 				}
 
 				// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 		});
 
 
-	});
-
-	$("#btnCloseAndRefresh").on("click", function()
-	{
-		window.location = 'V1-MainMenuView.html?show=employees';
 	});
 
 });

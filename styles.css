@@ -1,3 +1,4 @@
+
 .divTitle{
     text-align: center;
     margin-left: auto;
@@ -8,14 +9,10 @@
 
 .divCenter
 {
+  display: inline-block;
   background-color: WhiteSmoke;
-  padding-bottom:50px;
-  padding-top:50px;
-  padding-right:100px;
-  padding-left:100px;
-  margin: 100px;
-  margin-left: 300px;
-  margin-right: 300px;
+  padding:50px;
+  padding-top: 20px;
 
 }
 
@@ -24,6 +21,11 @@
   display: block;
   margin-right: auto;
   margin-left: auto;
+}
+
+.pad
+{
+  padding-top: 10px;
 
 }
 
@@ -35,18 +37,36 @@
 
 #navbaruser
 {
-
-    margin:0 auto;
-    list-style:none;
+    text-align: center;
+    margin: 0 auto;
     padding: 0 auto;
-   width:650px;
-   padding-left: 85px;
-   padding-bottom: 20px;
+
 }
 
-#navbaruser li {
-float:left;
-vertical-align: baseline;
+.barcenter
+{
+
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0px auto;
+     padding-bottom: 20px;
+     overflow: hidden;
+}
+
+#navbaruser li
+{
+        display:inline-block;
+        *display:inline; /*IE7*/
+        *zoom:1; /*IE7*/
+        color:white;
+
+}
+
+#floating_alert {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 5000;
 }
 
 .verticalLine {

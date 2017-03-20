@@ -1,6 +1,7 @@
 //======================================================================================================================
 $(document).ready(function ()
 {
+
 	var jsonData = {
 			"action": "echoGetAllSupervisor"
 	};
@@ -24,31 +25,8 @@ $(document).ready(function ()
 			}
 	});
 
-	var jsonData2 = {
-			"action": "echoGetAllDepartment"
-	};
-
-	//------------------------------------------------------------------------------------------------------------------
-	$.ajax({
-			url: "../Model/5-QuerysDB.php",
-			type: "POST",
-			data: jsonData2,
-
-			success: function(jsonResponse)
-			{
-					console.log(jsonResponse);
-					var dataArray = jQuery.parseJSON(jsonResponse);
-					for (var x = 0; x < dataArray.length; x++) {
-							 $("#inDNo").append(
-									 "<option value=\"" + dataArray[x][0] + "\">"+dataArray[x][1]+"</option> "
-									 );
-					}
-
-			}
-	});
-
 	//--------------------------------------------------------------------------------------------------------------------
-	$("#btnAdd").on("click", function(){
+	$("#btnAddDep").on("click", function(){
 		//                                                  //Previene clicks no deseados
 		event.preventDefault();
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -57,16 +35,10 @@ $(document).ready(function ()
 		//                                                  //      login
 		var jsonData3 =
 		{
-				"strSSN_I": $("#inSSN").val(),
-				"strFName_I": $("#inFName").val(),
-				"strLName_I": $("#inLName").val(),
-				"strBDate_I": $("#inBDate").val(),
-				"strAddress_I": $("#inAddress").val(),
-				"strSex_I": $("input[name=sx]:checked").val(),
-				"strSalary_I": $("#inSalary").val(),
+				"strDNumber_I": $("#inDNumber").val(),
+				"strDName_I": $("#inDName").val(),
 				"strSuperSSN_I":  $("#inSuperSSN :selected").val(),
-				"strDNo_I": $("#inDNo :selected").val(),
-				"action": "echoAddEmployee"
+				"action": "echoAddDepartment"
 		};
 
 		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -81,45 +53,22 @@ $(document).ready(function ()
 					var str = jsonResponse;
 					if (str.includes("Success"))
 					{
-							$("#divSucces").html(jsonResponse);
-							if ($("#divSucces").is(":hidden"))
+							if (!$("#formAddDep").is(":hidden"))
 							{
-									$("#divSucces").toggle("slow");
+									$("#formAddDep").toggle("slow");
+									$("#btnAddDep").toggle("slow");
 							}
-
-							if (!$("#formAddEmployee").is(":hidden"))
-							{
-									$("#formAddEmployee").toggle("slow");
-									$("#btnAdd").toggle("slow");
-							}
-
-							if (!$("#divAlert").is(":hidden"))
-              {
-                  $("#divAlert").toggle("slow");
-              }
-
-							if ($("#btnCloseAndRefresh").is(":hidden"))
-              {
-                  $("#btnCloseAndRefresh").toggle();
-              }
-
-							if (!$("#btnClose").is(":hidden"))
-              {
-                  $("#btnClose").toggle();
-              }
+							subShowNotify(jsonResponse,'success',8000);
 						}
 						else
 						{
-								$("#divAlert").html(jsonResponse);
-								if ($("#divAlert").is(":hidden"))
-								{
-									$	("#divAlert").toggle("slow");
-								}
+								subShowNotify(jsonResponse,'danger',8000);
 					 }
 				},
 
 				// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-				error: function(errorMessage) {
+				error: function(errorMessage)
+				{
 
 				}
 
@@ -127,11 +76,6 @@ $(document).ready(function ()
 		});
 
 
-	});
-
-	$("#btnCloseAndRefresh").on("click", function()
-	{
-		window.location = 'V1-MainMenuView.html?show=employees';
 	});
 
 });

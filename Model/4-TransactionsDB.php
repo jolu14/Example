@@ -5,15 +5,20 @@ include '0-CompanyDB.php';
 
 //                                                          //Variables globales obtenidas de json
 $action = $_POST["action"];
-$strSSN_I = $_POST["strSSN_I"];
+
 
 //======================================================================================================================
 //                                                          //Selecciona el metodo a ejecutar, se coloca solo por
 //                                                          //    estandar
 switch ($action){
-    case "echoAddEmployee": Company::echoAddEmployee($strSSN_I);
-          break;
-    case "echoDeleteEmployee": Company::echoDeleteEmployee($strSSN_I);
+  case "echoDeleteProject": Company::echoDeleteProject();
+      break;
+  case "echoSaveProject": Company::echoSaveProject();
+      break;
+    case "echoAddProject": Company::echoAddProject();
+        break;
+
+    case "echoDeleteEmployee": Company::echoDeleteEmployee();
           break;
     case "echoUpdateEmployee": Company::echoUpdateEmployee();
           break;
@@ -21,11 +26,21 @@ switch ($action){
           break;
     case 'echoDeleteEmployeeProject': Company::echoDeleteEmployeeProject();
           break;
-    case 'echoAddEmployeeDependent': Company::echoAddEmployeeDependent();
-      break;
     case 'echoDeleteEmployeeDependent': Company::echoDeleteEmployeeDependent();
        break;
+   case 'echoAddDepartment': Company::echoAddDepartment();
+      break;
+   case 'echoDeleteDepartment': Company::echoDeleteDepartment();
+      break;
+    case 'echoDeleteLocations': Company::echoDeleteLocations();
+        break;
+   case 'echoAddLocation': Company::echoAddLocation();
+      break;
+   case 'echoSaveDepartment': Company::echoSaveDepartment();
+      break;
+
 }
+
 
 //======================================================================================================================
 //                                                          //Con el objetivo de mantener modularidad se van a agregar
@@ -36,47 +51,22 @@ class Company
    //-------------------------------------------------------------------------------------------------------------------
    //                                                       //Funcion principal que va diagnosticar el resultado del
    //                                                       //    login, se decidio dividir el problema en submetodos
-   public static function echoAddEmployee($strSSN_I)
+   public static function echoAddEmployee($strSSN_I, $strFName_I, $strLName_I, $strBDate_I, $strAddress_I, $strSex_I,
+   $strSalary_I, $strSuperSSN_I, $strDNo_I)
    {
-
-     $strFName_I = $_POST["strFName_I"];
-     $strLName_I = $_POST["strLName_I"];
-     $strBDate_I = $_POST["strBDate_I"];
-     $strAddress_I = $_POST["strAddress_I"];
-     $strSex_I = $_POST["strSex_I"];
-     $strSalary_I = $_POST["strSalary_I"];
-     $strSuperSSN_I = $_POST["strSuperSSN_I"];
-     $strDNo_I = $_POST["strDNo_I"];
-
-     if ($strSSN_I == "" || $strFName_I == "" || $strBDate_I == "" || $strAddress_I == ""|| $strLName_I == "" ||
-         $strSalary_I == "")
-     {
-        echo CompanyDB::strAlert("Tienes que llenar todos los campos con asterisco *");
-     }
-     else
-     {
          //                                                    //Se crea la conexion a la base de datos
          $connection = mysqli_connect(CompanyDB::$DB_SERVER,CompanyDB::$DB_USERNAME,CompanyDB::$DB_PASSWORD,
          CompanyDB::$DB_DATABASE);
-         $sql = "";
-         if ($strSuperSSN_I != "null" && $strDNo_I != "null")
-         {
-         $sql = "INSERT INTO Employee (SSN, FNAME, LNAME, BDATE, ADDRES, SEX, SALARY,SUPERSSN, DNO)
-                  VALUES ('$strSSN_I','$strFName_I', '$strLName_I', '$strBDate_I', '$strAddress_I', '$strSex_I',
+
+         $sql = "CALL stpAddEmployee('$strSSN_I','$strFName_I', '$strLName_I', '$strBDate_I', '$strAddress_I', '$strSex_I',
                      $strSalary_I, '$strSuperSSN_I',$strDNo_I)";
-         }
-         else if ($strSuperSSN_I == "null")
+
+         if ($strSuperSSN_I = 'NULL')
          {
-            $sql = "INSERT INTO Employee (SSN, FNAME, LNAME, BDATE, ADDRES, SEX, SALARY, DNO)
-                     VALUES ('$strSSN_I','$strFName_I', '$strLName_I', '$strBDate_I', '$strAddress_I', '$strSex_I',
-                     $strSalary_I ,$strDNo_I)";
+            $sql = "CALL stpAddEmployee('$strSSN_I','$strFName_I', '$strLName_I', '$strBDate_I', '$strAddress_I', '$strSex_I',
+                        $strSalary_I, $strSuperSSN_I,$strDNo_I)";
          }
-         else
-         {
-            $sql = "INSERT INTO Employee (SSN, FNAME, LNAME, BDATE, ADDRES, SEX, SALARY,SUPERSSN)
-                     VALUES ('$strSSN_I','$strFName_I', '$strLName_I', '$strBDate_I', '$strAddress_I', '$strSex_I',
-                        $strSalary_I, '$strSuperSSN_I')";
-         }
+
          //                                                    //Se ejecuta el query deseado que esta almacendado en la
          //                                                    //    base de datos con stored procedures, que en este
          //                                                    //    caso solo es checara al usuario
@@ -84,23 +74,17 @@ class Company
 
          if ($result == TRUE)
          {
-            echo CompanyDB::strSucces("Empleado agregado correctamente!");;
+            return CompanyDB::strSucces("Empleado agregado correctamente!");
          }
          else
          {
-            echo "Error: " . $sql . "<br>" . $result->error;
+            return CompanyDB::strAlert($sql);
          }
-      }
    }
 
    //-------------------------------------------------------------------------------------------------------------------
-   public static function echoAddEmployeeDependent()
+   public static function echoAddEmployeeDependent($strSSN_I, $strNameD_I, $strBDate_I, $strRelationshipD_I, $strSexD_I)
    {
-      $strSSN_I = $_POST["strSSN_I"];
-     $strNameD_I = $_POST["strNameD_I"];
-     $strBDate_I = $_POST["strBDateD_I"];
-     $strRelationshipD_I = $_POST["strRelationshipD_I"];
-     $strSexD_I = $_POST["strSexD_I"];
       //                                                    //Se crea la conexion a la base de datos
       $connection = mysqli_connect(CompanyDB::$DB_SERVER,CompanyDB::$DB_USERNAME,CompanyDB::$DB_PASSWORD,
          CompanyDB::$DB_DATABASE);
@@ -113,22 +97,55 @@ class Company
       $result = mysqli_query($connection, $sql);
 
 
-      if ($result == TRUE) {
-          echo CompanyDB::strSucces("Empleado eliminado correctamente!");;
-      } else {
-          echo "Error: CALL stpDeleteEmployee('$strSSN_I');". "<br>" . $result->error;
+      if ($result == TRUE)
+      {
+          $result = CompanyDB::strSucces("Dependiente agregado correctamente!");;
       }
+      else
+      {
+          $result = "Error".$sql. "<br>";
+      }
+
+      return $result;
    }
 
    //-------------------------------------------------------------------------------------------------------------------
-   public static function echoDeleteEmployee($strSSN_I)
+   public static function echoAddDepartment()
    {
+      $strDNumber_I = $_POST["strDNumber_I"];
+     $strDName_I = $_POST["strDName_I"];
+     $strSuperSSN_I = $_POST["strSuperSSN_I"];
       //                                                    //Se crea la conexion a la base de datos
       $connection = mysqli_connect(CompanyDB::$DB_SERVER,CompanyDB::$DB_USERNAME,CompanyDB::$DB_PASSWORD,
          CompanyDB::$DB_DATABASE);
 
       //                                                    //Se ejecuta el query deseado que esta almacendado en la
       //                                                    //    base de datos con stored procedures
+      $sql = "INSERT INTO Department (Dname, Dnumber, Mgrssn)
+               VALUES ('$strDName_I','$strDNumber_I', '$strSuperSSN_I')";
+
+      $result = mysqli_query($connection, $sql);
+
+
+      if ($result == TRUE) {
+          echo CompanyDB::strSucces("Departamento agregado correctamente!");;
+      } else {
+          echo "Error: CALL stpDeleteEmployee($strDName_I, $strDNumber_I ,$strSuperSSN_I);". "<br>";
+      }
+   }
+
+   //-------------------------------------------------------------------------------------------------------------------
+   public static function echoDeleteEmployee()
+   {
+      $strSSN_I = $_POST["strSSN_I"];
+      //                                                    //Se crea la conexion a la base de datos
+      $connection = mysqli_connect(CompanyDB::$DB_SERVER,CompanyDB::$DB_USERNAME,CompanyDB::$DB_PASSWORD,
+         CompanyDB::$DB_DATABASE);
+
+      //                                                    //Se ejecuta el query deseado que esta almacendado en la
+      //                                                    //    base de datos con stored procedures
+
+      $sql =  "CALL stpDeleteEmployee('$strSSN_I')";
       $result = mysqli_query($connection, "CALL stpDeleteEmployee('$strSSN_I')");
 
       $count = mysqli_num_rows($result);
@@ -136,9 +153,95 @@ class Company
       if ($count == 0) {
           echo CompanyDB::strSucces("Empleado eliminado correctamente!");;
       } else {
-          echo "Error: CALL stpDeleteEmployee('$strSSN_I');". "<br>" . $result->error;
+          echo "Error: $sql". "<br>" . $result->error;
       }
    }
+
+   //-------------------------------------------------------------------------------------------------------------------
+   public static function echoDeleteDepartment()
+   {
+      $strDNum_I = $_POST["strDNum_I"];
+      //                                                    //Se crea la conexion a la base de datos
+      $connection = mysqli_connect(CompanyDB::$DB_SERVER,CompanyDB::$DB_USERNAME,CompanyDB::$DB_PASSWORD,
+         CompanyDB::$DB_DATABASE);
+
+      //                                                    //Se ejecuta el query deseado que esta almacendado en la
+      //                                                    //    base de datos con stored procedures
+
+      $sql =  "CALL stpDeleteDepartment('$strDNum_I')";
+      $result = mysqli_query($connection, $sql);
+
+      $count = mysqli_num_rows($result);
+
+      if ($count == 0) {
+          echo CompanyDB::strSucces("Departamento $strDNum_I eliminado correctamente!");;
+      } else {
+          echo "Error: $sql". "<br>" . $result->error;
+      }
+   }
+
+   //-------------------------------------------------------------------------------------------------------------------
+   public static function echoDeleteLocations()
+   {
+      $strDNum_I = $_POST["strDNum_I"];
+      $strDLocation_I = $_POST["strDLocation_I"];
+      //                                                    //Se crea la conexion a la base de datos
+      $connection = mysqli_connect(CompanyDB::$DB_SERVER,CompanyDB::$DB_USERNAME,CompanyDB::$DB_PASSWORD,
+         CompanyDB::$DB_DATABASE);
+
+      //                                                    //Se ejecuta el query deseado que esta almacendado en la
+      //                                                    //    base de datos con stored procedures
+      $result = mysqli_query($connection, "DELETE FROM dept_locations WHERE '$strDNum_I' = dnumber AND '$strDLocation_I' = dlocation");
+
+      if ($result == true) {
+          echo CompanyDB::strSucces("Locacion $strDNum_I eliminado correctamente!");;
+      } else {
+          echo "Error: CALL stpDeleteDepartment('$strDNum_I');". "<br>" . $result->error;
+      }
+   }
+
+   //-------------------------------------------------------------------------------------------------------------------
+   public static function echoAddLocation()
+   {
+      $strDNum_I = $_POST["strDNum_I"];
+      $strDLocation_I = $_POST["strDLocation_I"];
+      //                                                    //Se crea la conexion a la base de datos
+      $connection = mysqli_connect(CompanyDB::$DB_SERVER,CompanyDB::$DB_USERNAME,CompanyDB::$DB_PASSWORD,
+         CompanyDB::$DB_DATABASE);
+
+      //                                                    //Se ejecuta el query deseado que esta almacendado en la
+      //                                                    //    base de datos con stored procedures
+      $result = mysqli_query($connection, "INSERT INTO dept_locations VALUES ('$strDNum_I', '$strDLocation_I')");
+
+      if ($result == true) {
+          echo CompanyDB::strSucces("Locacion AGREAGADA eliminado correctamente!");;
+      } else {
+          echo "Error: CALL stpDeleteDepartment('$strDNum_I');". "<br>" . $result->error;
+      }
+   }
+
+   //-------------------------------------------------------------------------------------------------------------------
+   public static function echoAddProject()
+   {
+      $strPNumber_I = $_POST["strPNumber_I"];
+      $strPName_I = $_POST["strPName_I"];
+      $strPLocation_I= $_POST["strPLocation_I"];
+      $strDNum_I= $_POST["strDNum_I"];
+      //                                                    //Se crea la conexion a la base de datos
+      $connection = mysqli_connect(CompanyDB::$DB_SERVER,CompanyDB::$DB_USERNAME,CompanyDB::$DB_PASSWORD,
+         CompanyDB::$DB_DATABASE);
+
+      //                                                    //Se ejecuta el query deseado que esta almacendado en la
+      //                                                    //    base de datos con stored procedures
+      $result = mysqli_query($connection, "INSERT INTO Project VALUES ('$strPName_I', $strPNumber_I, '$strPLocation_I', $strDNum_I)");
+
+      if ($result == true) {
+          echo CompanyDB::strSucces("Proyecto agregado correctamente!");;
+      } else {
+          echo "Error: CALL stpDeleteDepartment('$strDNum_I');". "<br>" . $result->error;
+      }
+   }
+
 
    //-------------------------------------------------------------------------------------------------------------------
    public static function echoDeleteEmployeeProject()
@@ -157,7 +260,28 @@ class Company
       $count = mysqli_num_rows($result);
 
       if ($count == 0) {
-          echo CompanyDB::strSucces("Empleado eliminado correctamente!");;
+            echo CompanyDB::strSucces("Proyecto eliminado correctamente!");;
+      } else {
+          echo "Error: CALL stpDeleteEmployee('$strSSN_I');". "<br>" . $result->error;
+      }
+   }
+
+   //-------------------------------------------------------------------------------------------------------------------
+   public static function echoDeleteProject()
+   {
+      $strPNO_I = $_POST["strPNumber_I"];
+      //                                                    //Se crea la conexion a la base de datos
+      $connection = mysqli_connect(CompanyDB::$DB_SERVER,CompanyDB::$DB_USERNAME,CompanyDB::$DB_PASSWORD,
+         CompanyDB::$DB_DATABASE);
+
+      //                                                    //Se ejecuta el query deseado que esta almacendado en la
+      //                                                    //    base de datos con stored procedures
+      $result = mysqli_query($connection, "CALL stpDeleteProject('$strPNO_I')");
+
+      $count = mysqli_num_rows($result);
+
+      if ($count == 0) {
+            echo CompanyDB::strSucces("Proyecto eliminado correctamente!");;
       } else {
           echo "Error: CALL stpDeleteEmployee('$strSSN_I');". "<br>" . $result->error;
       }
@@ -181,6 +305,53 @@ class Company
 
       if ($count == 0) {
           echo CompanyDB::strSucces("Dependiente eliminado correctamente!");;
+      } else {
+          echo "Error: CALL stpDeleteEmployee('$strSSN_I');". "<br>" . $result->error;
+      }
+   }
+
+   //-------------------------------------------------------------------------------------------------------------------
+   public static function echoSaveDepartment()
+   {
+      $strDNum_I= $_POST["strDNum_I"];
+      $strDName_I = $_POST["strDName_I"];
+      $strManSSN_I = $_POST["strManSSN_I"];
+      //                                                    //Se crea la conexion a la base de datos
+      $connection = mysqli_connect(CompanyDB::$DB_SERVER,CompanyDB::$DB_USERNAME,CompanyDB::$DB_PASSWORD,
+         CompanyDB::$DB_DATABASE);
+
+      //                                                    //Se ejecuta el query deseado que esta almacendado en la
+      //                                                    //    base de datos con stored procedures
+      $sql = "UPDATE Department SET dNAME='$strDName_I', dnumber='$strDNum_I', MGRSSN='$strManSSN_I' WHERE dnumber='$strDNum_I'";
+      $result = mysqli_query($connection,$sql);
+
+
+      if ($result == true) {
+          echo CompanyDB::strSucces("Departamento actualizado correctamente!");;
+      } else {
+          echo "Error: CALL stpDeleteEmployee('$strSSN_I');". "<br>" . $result->error;
+      }
+   }
+
+   //-------------------------------------------------------------------------------------------------------------------
+   public static function echoSaveProject()
+   {
+      $strPNumber_I = $_POST["strPNumber_I"];
+      $strPName_I = $_POST["strPName_I"];
+      $strPLocation_I = $_POST["strPLocation_I"];
+      $strDNum_I = $_POST["strDNum_I"];
+      //                                                    //Se crea la conexion a la base de datos
+      $connection = mysqli_connect(CompanyDB::$DB_SERVER,CompanyDB::$DB_USERNAME,CompanyDB::$DB_PASSWORD,
+         CompanyDB::$DB_DATABASE);
+
+      //                                                    //Se ejecuta el query deseado que esta almacendado en la
+      //                                                    //    base de datos con stored procedures
+      $sql = "UPDATE Project SET pNAME='$strPName_I', dnum='$strDNum_I', plocation='$strPLocation_I' WHERE pnumber='$strPNumber_I'";
+      $result = mysqli_query($connection,$sql);
+
+
+      if ($result == true) {
+          echo CompanyDB::strSucces("Proyecto actualizado correctamente!");;
       } else {
           echo "Error: CALL stpDeleteEmployee('$strSSN_I');". "<br>" . $result->error;
       }
@@ -270,12 +441,6 @@ class Company
 
    //-------------------------------------------------------------------------------------------------------------------
 }
-
-//START TRANSACTION;
-//DELETE FROM works_on WHERE ESSN = '2343';
-//DELETE FROM dependent WHERE ESSN = '2343';
-//DELETE FROM Employee WHERE SSN = '2343';
-//COMMIT;
 
 //======================================================================================================================
 ?>

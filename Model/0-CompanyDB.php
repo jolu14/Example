@@ -7,7 +7,7 @@ class CompanyDB
 {
     public static $DB_SERVER = 'localhost';
     public static $DB_USERNAME = 'root';
-    public static $DB_PASSWORD = '';
+    public static $DB_PASSWORD = 'admin';
     public static $DB_DATABASE = 'Company';
 
     //                                                      //Metodo que regresa una alerta con el formato deseado,
